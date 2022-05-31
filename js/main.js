@@ -120,7 +120,7 @@ const q1 = [
                   
                   document.kotae.yanswer.value =  "";
                   
-                  if(a === 3){alert("No.1 クリア");location.reload();}
+                  if(a === 10){alert("No.1 クリア");location.reload();}
                   else if(a === 20){alert("No.２ クリア");location.reload();}
                   else if(a === 30){alert("No.３ クリア");location.reload();}
                   else{
