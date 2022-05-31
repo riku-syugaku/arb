@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+<meta charset="utf-8">
+<title>平方根a√b</title>
+
+<link rel = "stylesheet" href = "css/style.css">
+</head>
+
+<body>
+
+<section class = "container">
+   
+<p id = "test-title">平方根a√bテスト</p>
+
+<section id = "modal" class = "hidden">
+    <p>合格！！よくできました。</p>
+    <a><img src="img/win.png"> </a>
+    <br>
+<button id = "close">問題選択へ</button>
+</section>
+
+<section id = "modal2" class = "hidden">
+    <img src="img/ng.png">
+    <br>
+    <p id = "answer">残念！！やりなおしです。</p>
+    <button id = "okay">OK</button>
+</section>
+
+<section id = "modal3" class = "hidden">
+ <p id = "isCorrected"></p>
+ <img src="img/ok.png"> 
+</section>
+
+<button name="No1" id ="No1" class="No1"    onclick="buttonClick1()">  その１  </button>
+<button name="No2" id ="No2" class="No1"  onclick="buttonClick2()" >  その２  </button>
+<button name="No3" id ="No3" class="No1" onclick="buttonClick3()">  その３  </button>
+
+
+<input id="reset"  type="button" value="リセット" onclick="buttonClick5();"/>
+
+
+<br>   
+<br>   
+<div id ="Qnum">  </div> 
+<p id ="question"> 問題を選ぶ。</p>
+
+<form name = "kotae">
+    <input id ="yanswer" type="text" class="display" name="display" value="" disabled  >  
+  
+</form>
+
+ 
+</p>
+<ul id = "choice1" class = "choices"></ul>   
+
+<section2>
+<tr>
+<button name="1" id ="1" value ="1" onclick = "getNum(this)">  １  </button>
+<button name="2" id ="2" value ="2" onclick = "getNum(this)">  ２  </button>
+<button name="3" id ="3" value ="3" onclick = "getNum(this)">  ３  </button>
+<button name="4" id ="4" value ="4" onclick = "getNum(this)">  ４  </button>
+<button name="5" id ="5" value ="5" onclick = "getNum(this)">  ５  </button>
+</tr>
+<tr>
+<button name="6" id ="6" value ="6" onclick = "getNum(this)">  ６  </button>
+<button name="7" id ="7" value ="7" onclick = "getNum(this)">  ７  </button>
+<button name="8" id ="8" value ="8" onclick = "getNum(this)">  ８  </button>
+<button name="9" id ="9" value ="9" onclick = "getNum(this)">  ９  </button>
+<button name="10" id ="0" value ="0" onclick = "getNum(this)">  0  </button>
+</tr>
+<!-- <tr>
+<button name="11" id ="11" value ="11" onclick = "getNum(this)">  11  </button>
+<button name="12" id ="12" value ="12" onclick = "getNum(this)">  12  </button>
+<button name="13" id ="13" value ="13" onclick = "getNum(this)">  13  </button>
+<button name="14" id ="14" value ="14" onclick = "getNum(this)">  14  </button>
+<button name="15" id ="15" value ="15" onclick = "getNum(this)">  15  </button>
+</tr> -->
+<tr>
+<button name="root" id ="root"  class="check" value ="root" onclick = "getNum(this)" >  √  </button>
+<button name="check" id ="check" class="check"  value ="check" onclick = "getNum(this)">  確認  </button>
+<button name="clear" id ="clear" class="check" value ="clear" onclick = "getNum(this)">  クリア  </button>
+</tr>
+
+</section2>
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+
+<script src = "js/main.js"></script>
+</body>
+
+</html>
