@@ -33,6 +33,7 @@ const check = document.getElementById('check');
 const root = document.getElementById('root');
 const display = document.getElementById('display');
 const ab = document.getElementById('ab');
+//const win = document.getElementById('win');
 
 
 
@@ -84,7 +85,8 @@ const q1 = [
 
         
       function buttonClick1(){ 
-        alert('No1');  a = 0; b=10;
+        //alert('No1');  
+        a = 0; b=10;
         Qnum.textContent = `あと${b - a}問`;
         question.textContent = q1[a].q;
 
@@ -92,7 +94,7 @@ const q1 = [
 
 
       function buttonClick2(){ 
-        alert('No2');
+       // alert('No2');
         a = 10; b=20;
         Qnum.textContent = `あと${b - a}問`;
         question.textContent = q1[a].q;
@@ -101,7 +103,8 @@ const q1 = [
 
          
       function buttonClick3(){ 
-        alert('No3');a=20;b=30;
+       // alert('No3');
+       a=20;b=30;
         Qnum.textContent = `あと${b - a}問`;
         question.textContent = q1[a].q;
          }
@@ -113,27 +116,58 @@ const q1 = [
      //             let a = 0;
                 let yanswer = document.getElementById("yanswer");
                
+
                 if(yanswer.value === q1[a].c){
              
                  a ++;
-               alert("正解！");
-                  
+               modal3.classList.remove('hidden');
+               isCorrected.textContent = `正解！`;  
+               setTimeout(()=>{
+                modal3.classList.add('hidden');
+      
+                choice1.removeEventListener('click',event);
+      
+                  if(a === 10 ||a === 20 ||a === 30  ){
+        
+                    let z = 0;
+                    if(a === 10){z=1}
+                    else if(a === 20){z=2}
+                    else{z=3}
+
+                win.textContent = ` その  ${z} クリアです。`;
+
+
+                  modal.classList.remove('hidden');
+                      
+                    close.addEventListener('click',()=>{
+                      location.reload();
+                  })
+                }
+                
+                else{
+                  Qnum.textContent = `あと${b - a}問`;
+                  question.textContent = q1[a].q; 
+                    //次の問題へ
+                }
+      
+              },500)
                   document.kotae.yanswer.value =  "";
                   
-                  if(a === 10){alert("No.1 クリア");location.reload();}
-                  else if(a === 20){alert("No.２ クリア");location.reload();}
-                  else if(a === 30){alert("No.３ クリア");location.reload();}
-                  else{
-                    Qnum.textContent = `あと${b - a}問`;
-                    question.textContent = q1[a].q; 
-                  }
+               
                 
      
                  }
                 else{
                   
                  // let a = 0;
-                  alert(`やりなおし！正解は${q1[a].c}`);
+                  modal2.classList.remove('hidden');
+  
+          answer.textContent = ` ${question.textContent} は「 ${q1[a].c} 」です。やり直し！`;
+    
+          okay.addEventListener('click',()=>{
+            modal2.classList.add('hidden');
+            choice1.removeEventListener('click',event);})
+
                 document.kotae.yanswer.value =  "";
 
 
@@ -160,98 +194,5 @@ let button = document.getElementById('reset');
 //button.onclick = buttonClick;
 
  
-  // function Quizset () {
-  //   choice1.removeEventListener('click',event);
-  // Qnum.textContent = `No.${a + 1}`;
-  // question.textContent = q1.q;
-    
-  //   while(choice1.firstChild){
-  // choice1.removeChild(choice1.firstChild);
-  // }
-  
-  // item1.textContent = QuizBuild[a].c[0];
-  // const ul1 = document.querySelector('ul');
-  //   ul1.appendChild(item1);
-  
-  //   item2.textContent = QuizBuild[a].c[1];
-  //   const ul = document.querySelector('ul');
-  //     ul.appendChild(item2);
-  
-  //      function shuffle() {
-  //       const x = Math.floor(Math.random() * 2 + 1) ;
-  //       if(x == 1){ 
-  //         ul.insertBefore(item2,item1);
-  //       }else{
-  //         ul.insertBefore(item1,item2);
-  //       }
-  //     }
-  //     shuffle();
-  
-      function checkAnswer(){
-          
-        let event = function(e){
-          let t = e.target;
-    
-          if(t == item1){
-    
-          modal3.classList.remove('hidden');
-          isCorrected.textContent = `正解！`;  
-  
-          setTimeout(()=>{
-            modal3.classList.add('hidden');
-  
-            choice1.removeEventListener('click',event);
-  
-              if(a > end - 2 ){
-              var Finish   = new SpeechSynthesisUtterance();
-              Finish.text  = 'Great!!Good job!!';
-              Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-              Finish.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
-              Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-              speechSynthesis.speak(Finish);
-    
-              modal.classList.remove('hidden');
-                  
-                close.addEventListener('click',()=>{
-                  location.reload();
-              })
-            }else{
-                //次の問題へ
-              a++;
-              Quizset();
-            }
-  
-          },500);
-                  }else{
-          
-            modal2.classList.remove('hidden');
-  
-          answer.textContent = ` "${question.textContent}" は「${item1.textContent}」です。やり直し！`;
-    
-          var OMT   = new SpeechSynthesisUtterance();
-          OMT.text  = 'one more time';
-          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-          OMT.pitch = 1;// 声の高さ 0-2 初期値:1(0で女性の声) 
-          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
-          speechSynthesis.speak(OMT);
-  
-          okay.addEventListener('click',()=>{
-            modal2.classList.add('hidden');
-            choice1.removeEventListener('click',event);
-          });
-       
-          function change(){a=0}
-       change();
-
-          Quizset();
-
-          }};
-  
-        choice1.addEventListener('click',event,false);
-                }
-       checkAnswer();
-  
-  
-  
 
 
