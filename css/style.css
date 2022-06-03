@@ -6,9 +6,9 @@ body{
 
 
 .No1{
-    font-size:20px;
+    font-size:16px;
     border-radius:4px;
-    width :100px;
+    width :70px;
     text-align: center;
     padding: 10px;
     background-color: rgb(216, 212, 228);
@@ -23,7 +23,7 @@ body{
 }
 
 form{
-    display: inline-block;
+    /* display: inline-block; */
     margin-right:auto; margin-left:auto
     
   }
@@ -100,7 +100,6 @@ input{
     padding:10px;
     font-size:40px;
     font-weight:bold;
-
     color:black;
 }
 
