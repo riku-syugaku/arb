@@ -34,8 +34,11 @@ const check = document.getElementById('check');
 const root = document.getElementById('root');
 const display = document.getElementById('display');
 const ab = document.getElementById('ab');
-//const win = document.getElementById('win');
+let start = 0;
+let end = 0;
 
+
+//const win = document.getElementById('win');
 
 
 let answer = document.getElementById('answer');
@@ -101,8 +104,13 @@ const q1 = [
       function buttonClick1(){ 
         //alert('No1');  
         a = 0; b=10;
-        Qnum.textContent = `あと${b - a}問`;
+        let start = performance.now();
+
+
+
+        Qnum.textContent = `あと${b - a}問`;   
         question.textContent = q1[a].q;
+     
 
          }
 
@@ -172,8 +180,15 @@ const q1 = [
                     else if(a === 30){z=3}
                     else{z=4}
 
-                win.textContent = ` レベル  ${z} クリアです。`;
-
+                   
+                    let end = performance.now();
+                    
+                    win.textContent = ` レベル  ${z} クリア！
+                      「
+                    ${(Math.round((end - start)/1000))} 秒
+                    」
+                    `;
+                    
 
                   modal.classList.remove('hidden');
                       
