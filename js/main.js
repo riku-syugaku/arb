@@ -38,13 +38,9 @@ let start = 0;
 let end = 0;
 
 
-//const win = document.getElementById('win');
-
-
 let answer = document.getElementById('answer');
 const isCorrected = document.getElementById('isCorrected');
 
-//modal.classList.remove('hidden');
 
 const q1 = [
   {q:'√18',c:'3√2'},
@@ -102,64 +98,49 @@ const q1 = [
 
         
       function buttonClick1(){ 
-        //alert('No1');  
-        a = 0; b=10;
-        let start = performance.now();
-
-
-
-        Qnum.textContent = `あと${b - a}問`;   
-        question.textContent = q1[a].q;
-     
+         a = 0; b=10;  
+         startTime = null;
+        endTime = null;      
+        gamestart();
 
          }
 
 
       function buttonClick2(){ 
-       // alert('No2');
         a = 10; b=20;
-        Qnum.textContent = `あと${b - a}問`;
-        question.textContent = q1[a].q;
+        startTime = null;
+        endTime = null;      
+        gamestart();
          }
 
 
          
       function buttonClick3(){ 
-       // alert('No3');
        a=20;b=30;
-        Qnum.textContent = `あと${b - a}問`;
-        question.textContent = q1[a].q;
+       startTime = null;
+       endTime = null;      
+       gamestart();
          }
 
       function buttonClick4(){ 
-       // alert('No3');
        a=30;b=45;
-        Qnum.textContent = `あと${b - a}問`;
-        question.textContent = q1[a].q;
+       startTime = null;
+       endTime = null;      
+       gamestart();
          }
 
-         function buttonClickT1(){ 
-
-         //Math.floor((Math.random()*(n+1)));
-
-
-          console.log(num);
-
-
-           Qnum.textContent = `あと${b - a}問`;
+         function gamestart(){ 
+          startTime = performance.now();
+         start = performance.now();
+          Qnum.textContent = `あと${b - a}問`;
            question.textContent = q1[a].q;
             }
    
-
-
-
       
          function getNum(btn) {
           if(btn.value === "check"){
-                 //document.kotae.yanswer.value =  " ";
-                //checkA();
-     //             let a = 0;
-                let yanswer = document.getElementById("yanswer");
+
+            let yanswer = document.getElementById("yanswer");
                
 
                 if(yanswer.value === q1[a].c){
@@ -173,51 +154,26 @@ const q1 = [
                 choice1.removeEventListener('click',event);
       
                   if(a === 10 ||a === 20 ||a === 30 ||a === 45  ){
-        
-                    let z = 0;
-                    if(a === 10){z=1}
-                    else if(a === 20){z=2}
-                    else if(a === 30){z=3}
-                    else{z=4}
-
-                   
-                    let end = performance.now();
-                    
-                    win.textContent = ` レベル  ${z} クリア！
-                      「
-                    ${(Math.round((end - start)/1000))} 秒
-                    」
-                    `;
-                    
-
-                  modal.classList.remove('hidden');
-                      
-                    close.addEventListener('click',()=>{
-                      location.reload();
-                  })
+                    endTimer();                    
                 }
                 
                 else{
 
                   Qnum.textContent = `あと${b - a}問`;
                   question.textContent = q1[a].q; 
-                    //次の問題へ
                 }
       
               },500)
                   document.kotae.yanswer.value =  "";
-                  
-               
-                
-     
+
                  }
                 else{
                   
-                 // let a = 0;
+                 
+               
                   modal2.classList.remove('hidden');
   
           answer.textContent = ` ${question.textContent} は「 ${q1[a].c} 」です。やり直し！`;
-    
 
           okay.addEventListener('click',()=>{
             modal2.classList.add('hidden');
@@ -231,13 +187,12 @@ const q1 = [
                 else if(a>19 && a<29){ a =20;b =30;}
                 else if(a>29 && a<45){ a =30;b =45;}
                 else{a =30;b =45;}
+             
+                resetTimer();                 
 
-               
-               
-                Qnum.textContent = `あと${b - a}問`;
-               question.textContent = q1[a].q; }
-                
               }   
+
+            }
                 else if( btn.value == "root"){ document.kotae.yanswer.value +=  "√";}
                 else if(btn.value == "clear"){document.kotae.yanswer.value =  "";}
                 else{document.kotae.yanswer.value +=  btn.value;
@@ -245,10 +200,50 @@ const q1 = [
                  }
                }
     
+               let startTime = null;
+               let endTime = null;
+
+               function startTimer() {
+                startTime = performance.now();
+              }
+              
+              function endTimer() {
+                endTime = performance.now();
+                const elapsedTime = endTime - startTime;
+                
+
+                    let z = 0;
+                    if(a === 10){z=1}
+                    else if(a === 20){z=2}
+                    else if(a === 30){z=3}
+                    else{z=4}
+
+                   
+                    let end = performance.now();
+
+
+                    win.textContent = ` レベル  ${z} クリア！
+                      「
+                    ${(Math.round((elapsedTime)/1000))} 秒
+                    」`;
+                    
+
+                  modal.classList.remove('hidden');
+                      
+                    close.addEventListener('click',()=>{
+                      location.reload();
+                  })
+
+              }
+              
+              function resetTimer() {
+                startTime = null;
+                endTime = null;
+                gamestart();
+              }
 
 function buttonClick5(){location.reload();}
 let button = document.getElementById('reset');
-//button.onclick = buttonClick;
 
  
 
