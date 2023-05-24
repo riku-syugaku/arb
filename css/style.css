@@ -93,6 +93,15 @@ input{
     font-weight:bold;
     text-align: center;
 }
+#timescore{
+    margin-bottom: 20px;
+    font-size:35px;
+    font-weight:bold;
+    text-align: right;
+}
+
+
+
 
 #yanswer {
     width :200px;
