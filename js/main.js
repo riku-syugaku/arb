@@ -36,7 +36,7 @@ const display = document.getElementById('display');
 const ab = document.getElementById('ab');
 let start = 0;
 let end = 0;
-let timeLimit = 80000;
+let timeLimit = 60000;
 
 
 let answer = document.getElementById('answer');
