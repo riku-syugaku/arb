@@ -43,28 +43,30 @@ let answer = document.getElementById('answer');
 const isCorrected = document.getElementById('isCorrected');
 
 const q1 = [
-{q:'√18',c:'3√2'},{q:'√32',c:'4√2'},
-{q:'√48',c:'4√3'},{q:'√52',c:'2√13'},
+
+
+  {q:'√18',c:'3√2'},{q:'√32',c:'4√2'},
+{q:'√48',c:'4√3'},{q:'√72',c:'6√2'},
 {q:'√54',c:'3√6'},{q:'√24',c:'2√6'},
 {q:'√28',c:'2√7'},{q:'√12',c:'2√3'},
-{q:'√44',c:'2√11'},{q:'√8',c:'2√2'},
+{q:'√50',c:'5√2'},{q:'√8',c:'2√2'},
 
-{q:'√20',c:'2√5'},{q:'√72',c:'6√2'},
-{q:'√68',c:'2√17'},{q:'√112',c:'4√7'},
-{q:'√40',c:'2√10'},{q:'√50',c:'5√2'},
-{q:'√90',c:'3√10'},{q:'√45',c:'3√5'},
-{q:'√27',c:'3√3'},{q:'√99',c:'3√11'},
-
-{q:'√125',c:'5√5'},
-{q:'√56',c:'2√14'},
+{q:'√27',c:'3√3'},
 {q:'√63',c:'3√7'},
 {q:'√98',c:'7√2'},
-{q:'√120',c:'2√30'},
-{q:'√75',c:'5√3'},
 {q:'√80',c:'4√5'},
 {q:'√96',c:'4√6'},
+{q:'√40',c:'2√10'},
 {q:'√60',c:'2√15'},
-{q:'√180',c:'6√5'},
+{q:'√90',c:'3√10'},
+{q:'√45',c:'3√5'},
+{q:'√20',c:'2√5'},
+
+{q:'√56',c:'2√14'},{q:'√112',c:'4√7'},
+{q:'√99',c:'3√11'},{q:'√120',c:'2√30'},
+{q:'√125',c:'5√5'},{q:'√52',c:'2√13'},
+{q:'√68',c:'2√17'},{q:'√75',c:'5√3'},
+{q:'√44',c:'2√11'},{q:'√180',c:'6√5'},
 
 {q:'√490',c:'7√10'},
 {q:'√175',c:'5√7'},
@@ -176,6 +178,8 @@ const q1 = [
         Qnum.textContent = `あと${b - a}問`;
         question.textContent = q1[a].q;
                       } 
+
+
  function timeGet(){ 
                         startTime = new Date();
                         let timer = null;
@@ -183,7 +187,10 @@ const q1 = [
                         const duration = timeLimit;
                         // 初回のタイマースタート
                      startTimer(duration);                
-                                      }             
+                                      } 
+                                      
+                                      
+
       function onAnswerSubmitted(correct) {
               if (!correct) {
                 attempts++;
@@ -211,6 +218,8 @@ const q1 = [
 
                  a ++;
                modal3.classList.remove('hidden');
+
+
                isCorrected.textContent = `正解！`;  
                setTimeout(()=>{
                 modal3.classList.add('hidden');
@@ -230,10 +239,10 @@ const q1 = [
                     win.textContent = ` レベル  ${z} クリア！
                       「
                     ${(Math.round((timeLimit - timeRemaining)/1000))} 秒」`;
-
-                                            clearInterval(timer);
-
                     
+                    clearInterval(timer);
+
+
                   modal.classList.remove('hidden');
                       
                     close.addEventListener('click',()=>{
@@ -257,24 +266,31 @@ const q1 = [
                
                   modal2.classList.remove('hidden');
   
-          answer.textContent = ` ${question.textContent} は「 ${q1[a].c} 」です。やり直し！`;
-          
+          answer.textContent = ` ${question.textContent} = ${q1[a].c}`;
+
           okay.addEventListener('click',()=>{
             modal2.classList.add('hidden');
-            choice1.removeEventListener('click',event);})
+            choice1.removeEventListener('click',event);
+
+
             
             document.kotae.yanswer.value =  "";
+  
+            if(a<9){ a =0;b =10;timeRemaining = timeLimit;}
+            else if(a>9 && a<19){ a =10;b =20;timeRemaining=timeLimit;}
+            else if(a>19 && a<29){ a =20;b =30;timeRemaining=timeLimit;}
+            else if(a>29 && a<45){ a =30;b =45;timeRemaining=timeLimit;}
+            else{a =30;b =45;timeRemaining=timeLimit;}
+            gamestart(); 
 
-                if(a<9){ a =0;b =10;timeRemaining = timeLimit;}
-                else if(a>9 && a<19){ a =10;b =20;timeRemaining=timeLimit;}
-                else if(a>19 && a<29){ a =20;b =30;timeRemaining=timeLimit;}
-                else if(a>29 && a<45){ a =30;b =45;timeRemaining=timeLimit;}
-                else{a =30;b =45;timeRemaining=timeLimit;}
+          })
+          
+          
 
             
 
               }   
-              gamestart(); 
+             // gamestart(); 
             }
                 else if( btn.value == "root"){ document.kotae.yanswer.value +=  "√";}
                 else if(btn.value == "clear"){document.kotae.yanswer.value =  "";}
@@ -286,23 +302,26 @@ const q1 = [
          function endTimer() {
                 endTime = performance.now();
                 const elapsedTime = endTime - startTime;
-                
+                 function restartTimer() {
+          stopTimer();
+          resetTimer(duration);
+          startTimer(duration);
+        }   
 
+        restartTimer();
                     let z = 0;
                     if(a === 10){z=1}
                     else if(a === 20){z=2}
                     else if(a === 30){z=3}
                     else{z=4}
 
-                   
                     let end = performance.now();
-
 
                     win.textContent = ` レベル  ${z} クリア！
                       「
                     ${(Math.round((elapsedTime)/1000))} 秒
                     」`;
-                    
+
 
                   modal.classList.remove('hidden');
                       
@@ -313,10 +332,7 @@ const q1 = [
 
               }
             
-              function resetTimer() {
-                startTime = null;
-                endTime = null;
-              }
+
 
  function displayTimer() {
       const timerElement = document.getElementById("timer");
