@@ -230,6 +230,9 @@ const q1 = [
                     win.textContent = ` レベル  ${z} クリア！
                       「
                     ${(Math.round((timeLimit - timeRemaining)/1000))} 秒」`;
+
+                                            clearInterval(timer);
+
                     
                   modal.classList.remove('hidden');
                       
