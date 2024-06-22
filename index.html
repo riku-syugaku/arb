@@ -11,19 +11,28 @@
 
 <section class = "container">
    
-<p id = "test-title">平方根a√bテスト</p>
+<p id = "test-title">平方根
+    <math>
+        <mi>a</mi>
+        <msqrt>
+          <mi>b</mi>
+        </msqrt>
+      </math>
+    テスト</p>
 
 <section id = "modal" class = "hidden">
-    <p id = "win">クリア！！</p>
+    <p id = "win">合格！！</p>
     <a><img src="img/win.png"> </a>
     <br>
 <button id = "close">問題選択へ</button>
 </section>
 
 <section id = "modal2" class = "hidden">
+    <p>残念！！やり直し！</p>
+
     <img src="img/ng.png">
     <br>
-    <p id = "answer">残念！！やりなおしです。</p>
+    <p id = "answer">残念！！</p>
     <button id = "okay">OK</button>
 </section>
 
@@ -31,6 +40,14 @@
  <p id = "isCorrected"></p>
  <img src="img/ok.png"> 
 </section>
+
+<section id = "modal4" class = "hidden">
+    <p id = "lose"></p>
+    <img src="img/lose.png"> 
+    <br>
+    <button2 id = "lose" type="reset-button" value="リセット"  onclick="buttonClick5();"  >やり直す</button2>
+
+   </section>
 
 <button name="No1" id ="No1" class="No1"    onclick="buttonClick1()">  Lv.１  </button>
 <button name="No2" id ="No2" class="No1"  onclick="buttonClick2()" >  Lv.２  </button>
@@ -49,8 +66,10 @@
 <p id ="timescore"> 制限時間</p>
 <p id ="question"> 問題を選ぶ。</p>
 
+
+
 <form name = "kotae">
-    <input id ="yanswer" type="text" class="display" name="display" value=""  >  
+    <input id ="yanswer" type="text" class="display" name="display" value="" />  
 </form>
 
  
