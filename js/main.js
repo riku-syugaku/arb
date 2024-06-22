@@ -10,11 +10,14 @@ const close = document.getElementById('close');
 const modal = document.getElementById('modal');
 const modal2 = document.getElementById('modal2');
 const modal3 = document.getElementById('modal3');
+const modal4 = document.getElementById('modal4');
 const No1 = document.getElementById('No1');
 const No2 = document.getElementById('No2');
 const No3 = document.getElementById('No3');
 const No4 = document.getElementById('No4');
 const okay = document.getElementById('okay');
+const lose = document.getElementById('lose');
+const zero = document.getElementById('0');
 const one = document.getElementById('1');
 const two = document.getElementById('2');
 const three = document.getElementById('3');
@@ -32,20 +35,47 @@ const fourteen = document.getElementById('14');
 const fifteen = document.getElementById('15');
 const check = document.getElementById('check');
 const root = document.getElementById('root');
+const clear = document.getElementById('clear');
+
 const display = document.getElementById('display');
 const ab = document.getElementById('ab');
+const input = document.getElementById('yasnswer');
+
 let start = 0;
 let end = 0;
 let timeLimit = 60000;
 
-
 let answer = document.getElementById('answer');
 const isCorrected = document.getElementById('isCorrected');
+
+yanswer.disabled = true;
+one.disabled = true;
+two.disabled = true;
+three.disabled = true;
+four.disabled = true;
+five.disabled = true;
+six.disabled = true;
+seven.disabled = true;
+eight.disabled = true;
+nine.disabled = true;
+zero.disabled = true;
+check.disabled = true;
+root.disabled = true;
+clear.disabled = true;
+
+
+
+
+
+
+
+
+
 
 const q1 = [
 
 
-  {q:'√18',c:'3√2'},{q:'√32',c:'4√2'},
+{q:'√18',c:'3√2'},{q:'√32',c:'4√2'},
 {q:'√48',c:'4√3'},{q:'√72',c:'6√2'},
 {q:'√54',c:'3√6'},{q:'√24',c:'2√6'},
 {q:'√28',c:'2√7'},{q:'√12',c:'2√3'},
@@ -150,13 +180,28 @@ const q1 = [
               else{z=4}
 
               
-              win.textContent = ` 時間切れです！`;
+              lose.textContent = ` 時間切れです！`;
+
               
-            modal.classList.remove('hidden');
-                
-              close.addEventListener('click',()=>{
-                location.reload();
-            })
+                modal4.classList.remove('hidden');
+
+                lose.addEventListener('click',()=>{
+
+                  console.log("こんにちは");      
+              
+                  modal4.classList.add('hidden');
+                  choice1.removeEventListener('click',event);
+
+             
+                  location.reload();
+
+      
+                })
+
+
+
+
+       
 
 
             } else {
@@ -174,6 +219,27 @@ const q1 = [
         }       
       function gamestart(){ 
 
+        one.disabled = false;
+        two.disabled = false;
+        three.disabled = false;
+        four.disabled = false;
+        five.disabled = false;
+        six.disabled = false;
+        seven.disabled = false;
+        eight.disabled = false;
+        nine.disabled = false;
+        zero.disabled = false;
+        check.disabled = false;
+        root.disabled = false;
+        clear.disabled = false;
+
+        No1.disabled = true;
+        No2.disabled = true;
+        No3.disabled = true;
+        No4.disabled = true;
+
+        
+      
         start = performance.now();
         Qnum.textContent = `あと${b - a}問`;
         question.textContent = q1[a].q;
@@ -191,23 +257,23 @@ const q1 = [
                                       
                                       
 
-      function onAnswerSubmitted(correct) {
-              if (!correct) {
-                attempts++;
-                if (attempts < maxAttempts) {
-                  console.log("不正解です。再度挑戦してください。");
-                  restartTimer();
-                } else {
-                  console.log("3回間違えました。");
-                  stopTimer();
-                  resetTimer(duration);
-                  // 3回間違えた後の処理をここに追加する
-                }
-              } else {
-                console.log("正解です！");
-                stopTimer();
-              }
-            }
+      // function onAnswerSubmitted(correct) {
+      //         if (!correct) {
+      //           attempts++;
+      //           if (attempts < maxAttempts) {
+      //             console.log("不正解です。再度挑戦してください。");
+      //             restartTimer();
+      //           } else {
+      //             console.log("3回間違えました。");
+      //             stopTimer();
+      //             resetTimer(duration);
+      //             // 3回間違えた後の処理をここに追加する
+      //           }
+      //         } else {
+      //           console.log("正解です！");
+      //           stopTimer();
+      //         }
+      //       }
                  
      function getNum(btn) {
           if(btn.value === "check"){
@@ -236,7 +302,7 @@ const q1 = [
 
                     let end = performance.now();
                     
-                    win.textContent = ` レベル  ${z} クリア！
+                    lose.textContent = ` レベル  ${z} クリア！
                       「
                     ${(Math.round((timeLimit - timeRemaining)/1000))} 秒」`;
                     
@@ -320,7 +386,8 @@ const q1 = [
                     win.textContent = ` レベル  ${z} クリア！
                       「
                     ${(Math.round((elapsedTime)/1000))} 秒
-                    」`;
+                    」`
+                    ;
 
 
                   modal.classList.remove('hidden');
