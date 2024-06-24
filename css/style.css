@@ -107,7 +107,7 @@ input{
 #question{
     margin-bottom: 35px;
     font-size:50px;
-    font-family:fujiwara math;
+    font-family:sans-serif	;
     font-weight:bold;
     text-align: center;
 }
@@ -127,7 +127,7 @@ input{
     padding:10px;
     font-size:40px;
     font-weight:bold;
-    font-family:fujiwara math;
+    font-family:sans-serif	;
     color:black;
 }
 
@@ -259,7 +259,7 @@ button {
     left:0;
     transition:transform 0.4s;
     font-size:40px;
-    font-family:fujiwara math;
+    font-family:sans-serif	;
     color:white;
     font-weight:bold;
     text-align: center;
@@ -306,7 +306,8 @@ button {
 
 #answer{
     font-size:60px;
-    font-family:fujiwara math;
+    font-family:sans-serif	
+;
     color:white;
     font-weight:bold;
     text-align: center;
