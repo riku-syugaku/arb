@@ -302,7 +302,7 @@ const q1 = [
 
                     let end = performance.now();
                     
-                    win.textContent = ` レベル  ${z} クリア！
+                    win.textContent = `Lv.${z}クリア！
                       「
                     ${(Math.round((timeLimit - timeRemaining)/1000))} 秒」`;
                     
