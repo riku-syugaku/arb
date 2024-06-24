@@ -238,7 +238,8 @@ const q1 = [
         No3.disabled = true;
         No4.disabled = true;
 
-        
+        yanswer.disabled = false;
+
       
         start = performance.now();
         Qnum.textContent = `あと${b - a}問`;
