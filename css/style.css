@@ -1,7 +1,7 @@
 body{
     background : white;
     font-size : 14px;
-    font-family: Verdana,  sans-serif;
+    font-family: Verdana,  times new roman;
 }
 
 
@@ -107,7 +107,7 @@ input{
 #question{
     margin-bottom: 35px;
     font-size:50px;
-    font-family:sans-serif	;
+    font-family:times new roman	;
     font-weight:bold;
     text-align: center;
 }
@@ -259,7 +259,7 @@ button {
     left:0;
     transition:transform 0.4s;
     font-size:40px;
-    font-family:sans-serif	;
+    font-family:times new roman;
     color:white;
     font-weight:bold;
     text-align: center;
@@ -306,8 +306,7 @@ button {
 
 #answer{
     font-size:60px;
-    font-family:sans-serif	
-;
+    font-family:times new roman;
     color:white;
     font-weight:bold;
     text-align: center;
