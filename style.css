@@ -319,30 +319,30 @@ body {
   border-radius: 15px !important;        
   margin: 15px auto 0 auto !important;
 }
+
+
 /* ==========================================
-   📱 💻 iPad（タブレット）だけで拡大する設定
-   （PCやスマホでは何もしない）
+   📱 💻 デバイス別サイズ調整（確実版）
    ========================================== */
-@media screen and (min-width: 768px) and (max-width: 924px) {
-  
+
+/* 1. スマホ(縦幅が狭い場合) ：90%に縮小 */
+@media screen and (max-height: 600px) {
   .container {
-    /* iPadのときだけカードを1.35倍に拡大 */
+    transform: scale(0.9) !important;
+    transform-origin: center top !important;
+    margin: 10px auto !important;
+  }
+}
+
+/* 2. iPad・タブレット（スマホより大きい画面） ：1.35倍に拡大 */
+/* ※768px以上の「タブレットサイズ」をターゲットにします */
+@media screen and (min-width: 768px) {
+  .container {
     transform: scale(1.35) !important;
-    transform-origin: center top !important; /* 上端を基準に拡大 */
+    transform-origin: center top !important;
     margin: 80px auto !important;
   }
 }
-
-/* 2. スマホ (縦幅が狭い場合) ：90%に縮小 */
-@media screen and (max-height: 600px) {
-  .container {
-    transform: scale(0.9) !important; /* 全体を90%に縮小 */
-    transform-origin: center top !important;
-    margin: 10px auto !important;     /* 上下の余白を詰める */
-  }
-}
-
-
 
 
 
