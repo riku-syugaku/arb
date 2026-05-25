@@ -323,7 +323,7 @@ body {
    📱 💻 iPad（タブレット）だけで拡大する設定
    （PCやスマホでは何もしない）
    ========================================== */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 924px) {
   
   .container {
     /* iPadのときだけカードを1.35倍に拡大 */
