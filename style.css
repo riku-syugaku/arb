@@ -419,6 +419,40 @@ body {
   /* JavaScriptの正解時（タイマーが動いている間）にボタンが浮き出てくるのを防ぐ保険 */
 }
 
+/* ==========================================
+   📱 スマホで見ているときだけボタンを大きくする設定
+   ========================================== */
+@media screen and (max-width: 480px) {
+  
+  /* 🔢 テンキーのボタン全体を大きく押しやすくする */
+  .keypad button, 
+  #buttons button, 
+  .btn-container button { 
+    font-size: 24px !important;    /* 文字の大きさをガッツリ大きく */
+    padding: 15px 0 !important;    /* ボタンの縦幅を広げて押しやすく */
+    border-radius: 12px !important; /* 角を少し丸くして押しやすく */
+  }
 
+  /* ⭕❌ 判定ボタンやクリアボタンなどの「横長デカボタン」 */
+  #check, #clear, #okay, .action-btn {
+    font-size: 22px !important;
+    padding: 12px 20px !important;
+    height: auto !important;
+    width: 90% !important;        /* スマホの画面幅いっぱいに広げる */
+    max-width: 280px !important;
+  }
+
+  /* ❓ 問題文のルートの文字サイズもスマホ用に大きく調整 */
+  #question {
+    font-size: 36px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* ✏️ 入力した数式が表示されるエリア */
+  #yanswer-math {
+    font-size: 28px !important;
+    min-height: 40px !important;
+  }
+}
 
 
