@@ -18,21 +18,18 @@ body {
   box-sizing: border-box;
 }
 
-/* 外枠の赤い線と影を排除 */
+/* 📦 外枠：PC・タブレット共通の基本構造 */
 .container {
   background: #ffffff;
   border: 1px solid #cbd5e1; /* 落ち着いたグレーの細線 */
   border-radius: 20px;       /* ほどよい丸み */
-  padding: 30px 20px 25px 20px;
+  padding: 30px 20px;
   box-shadow: 0 10px 30px rgba(15, 37, 71, 0.05); /* 濃紺ベースの柔らかい影 */
   text-align: center;
-  width: 90% !important;           /* 画面の横幅に合わせて柔軟に広げる */
-  max-width: 540px !important;     /* PCやiPadで広がりすぎない絶妙な限界値に変更（元が400px程度なのを拡大） */
-  margin: 40px auto !important;    /* 上下に少し余裕を持たせて中央寄せ */
-  padding: 30px 20px !important;   /* 内側の余白を広げてゆったりさせる */
-
-
-
+  width: 100%;
+  max-width: 420px;          /* ★PCで見た時に美しく収まる絶妙なサイズ */
+  margin: 20px auto;
+  box-sizing: border-box;
 }
 
 .level-container h1 {
@@ -64,39 +61,48 @@ body {
 }
 
 /* ==========================================
-   ①・② 解答欄（#yanswer）の修正
-   （赤い枠を完全に排除し、サイズを1.5倍に拡大）
+   解答欄（#yanswer-math）の設定
    ========================================== */
 .answer-container {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 25px;
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
 }
 
-#yanswer {
+#yanswer-math {
+  display: inline-block;
   width: 100%;
-  max-width: 380px;          /* 視覚的な横幅を少し拡張 */
+  max-width: 380px;            
   background-color: #ffffff !important;
-  border: 2px solid #0f2547 !important; /* 完全に濃紺のフチ（赤を廃止） */
+  border: 2px solid #0f2547 !important; /* 濃紺フチ */
   border-radius: 14px !important;
   color: #0f2547 !important;
+
+  font-size: 2.6em !important;     
+  height: 90px !important;         /* 箱の縦幅を固定 */
+  line-height: 90px !important;    /* 文字を中央配置 */
+  padding: 0 10px !important;      
   
-  /* 📥 従来の1.5倍サイズに拡大 */
-  font-size: 3.6em !important;   /* 2.4em から 3.6em に大きく */
-  padding: 12px 10px !important; /* 上下の余白を広げて高さを確保 */
-  
-  outline: none !important;
   text-align: center;
   font-weight: bold;
+  box-sizing: border-box;
   box-shadow: inset 0 3px 6px rgba(15, 37, 71, 0.04) !important;
   transition: border-color 0.2s, box-shadow 0.2s;
+  overflow: hidden;                
 }
 
-/* 入力中（フォーカス時）のスタイルも濃紺で統一 */
-#yanswer:focus {
+#yanswer-math:focus {
   border-color: #0f2547 !important;
-  box-shadow: 0 0 0 3px rgba(15, 37, 71, 0.1) !important; /* じんわり光る影も薄いネイビー */
+  box-shadow: 0 0 0 3px rgba(15, 37, 71, 0.1) !important;
+}
+
+/* 裏方の隠しインプット用設定 */
+#yanswer {
+  display: none !important;
 }
 
 
@@ -110,7 +116,7 @@ body {
   margin-top: 10px;
 }
 
-/* キーパッドボタン共通（ユーザー様の立体感の指定を継承） */
+/* キーパッドボタン共通 */
 .choice-grid button {
   display: flex;
   justify-content: center;
@@ -140,12 +146,12 @@ body {
   border-color: #091421;
 }
 
-/* 📥 ④ 判定（「できた！」）ボタン：数字キーとの間に余白を追加 */
+/* 判定（「できた！」）ボタン */
 #check {
   grid-column: span 2;
   aspect-ratio: auto !important;
-  height: calc(100% - 15px);        /* 余白の分、高さを微調整 */
-  margin-top: 15px;                 /* 数字ボタン群との間に上品なスキマを確保 */
+  height: calc(100% - 15px);        
+  margin-top: 15px;                 
   background-color: #0f2547 !important; 
   border: 1px solid #0f2547 !important;
   box-shadow: 0 4px 0 #050e1c !important; 
@@ -156,7 +162,7 @@ body {
   box-shadow: 0 1px 0 #050e1c !important; 
 }
 
-/* クリア（C）ボタン（赤みを排除） */
+/* クリア（C）ボタン */
 #clear {
   background-color: #f1f5f9 !important;
   border: 2px solid #091421 !important;
@@ -186,7 +192,6 @@ body {
   }
 }
 
-/* レベル選択ボタン */
 .lvl-btn {
   display: flex;
   justify-content: center;
@@ -210,11 +215,6 @@ body {
   box-shadow: 0 1px 0 #cbd5e1 !important;
 }
 
-#No1, #No2, #No3, #No4, #No5, #No6, #No7, #No8 { 
-  background-color: #ffffff !important; 
-  box-shadow: 0 4px 0 #cbd5e1 !important; 
-}
-
 
 /* ==========================================
    4. モーダル（ポップアップ）設定
@@ -231,10 +231,9 @@ body {
   z-index: 9999;
 }
 
-/* 📥 ③ 通常モーダル：枠線（border）を消去 */
 .modal-content {
   background: #ffffff;
-  border: none !important; /* 枠線をなしに */
+  border: none !important; 
   padding: 30px;
   border-radius: 18px;
   text-align: center;
@@ -262,15 +261,10 @@ body {
   cursor: pointer;
   box-shadow: 0 3px 0 #050e1c;
 }
-.modal-content button:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 #050e1c;
-}
 
-/* 📥 ③ 不正解モーダル：枠線（border）を消去 */
 .modal-content-wrong {
   background-color: #ffffff; 
-  border: none !important; /* 枠線をなしに */
+  border: none !important; 
   color: #0f2547;
   padding: 30px 20px;
   border-radius: 18px;
@@ -282,29 +276,14 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  animation: slideDown 0.25s ease-out forwards;
-}
-
-@keyframes slideDown {
-  0% { transform: translateY(-30vh); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-.modal-content-wrong h2 { 
-  font-size: 1.8em; 
-  font-weight: bold; 
-  margin: 0; 
-  color: #0f2547; 
 }
 
 .modal-img {
-  width: 200px;  /* 👈 横幅（好みの大きさに数値を変更してください） */
-  height: auto;   /* 縦横比を崩さないための魔法の決まり文句（このままでOK） */
+  width: 200px;  
+  height: auto;   
   display: block;
-  margin: 0 auto 15px auto; /* 画像を真ん中に寄せつつ、下の文字との隙間をあける設定 */
+  margin: 0 auto 15px auto; 
 }
-
-
 
 .wrong-formula { 
   font-size: 2.4em; 
@@ -313,7 +292,6 @@ body {
   margin: 5px 0;
 }
 
-/* 不正解モーダルの「わかった」ボタン */
 #okay {
   background-color: #f1f5f9; 
   color: #0f2547; 
@@ -326,152 +304,31 @@ body {
   width: 130px;
   aspect-ratio: auto !important; 
   box-shadow: 0 3px 0 #cbd5e1 !important; 
-  transform: none;
-  transition: transform 0.05s, box-shadow 0.05s;
-}
-#okay:active { 
-  transform: translateY(2px) !important; 
-  box-shadow: 0 1px 0 #cbd5e1 !important; 
-}
-/* ==========================================
-   【完全解決】実際に画面に見えている解答欄（#yanswer-math）の修正
-   ========================================== */
-
-/* 1. 赤い枠線と影を完全に消去し、1.5倍に大きくし、縦幅をあらかじめ固定する */
-#yanswer-math,
-.answer-container #yanswer-math {
-  display: inline-block;
-  width: 100%;
-  max-width: 380px;            /* 横幅を少し拡張 */
-  background-color: #ffffff !important;
-  border: 2px solid #0f2547 !important; /* 濃紺フチ */
-  border-radius: 14px !important;
-  color: #0f2547 !important;
-
-  /* 📥 サイズを拡大しつつ、縦幅を完全に固定する設定 */
-  font-size: 2.6em !important;     /* 文字の大きさ */
-  height: 90px !important;         /* 💡箱の縦幅を「90px」に最初から固定！ */
-  line-height: 90px !important;    /* 💡中の文字やルートが縦のちょうど中央に来るように配置 */
-  padding: 0 10px !important;      /* paddingでの縦伸びを防ぐため、上下のpaddingを0にリセット */
-  
-  text-align: center;
-  font-weight: bold;
-  box-sizing: border-box;
-  box-shadow: inset 0 3px 6px rgba(15, 37, 71, 0.04) !important;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  overflow: hidden;                /* はみ出し防止 */
 }
 
-/* 2. 入力中（フォーカス時）のスタイルも濃紺で統一 */
-#yanswer-math:focus,
-.answer-container #yanswer-math:focus {
-  border-color: #0f2547 !important;
-  box-shadow: 0 0 0 3px rgba(15, 37, 71, 0.1) !important;
-}
-
-/* 3. もし親要素（外枠の箱）に赤線がついている場合の保険 */
-.answer-container {
-  border: none !important;
-  box-shadow: none !important;
-  background: none !important;
-}
-
-/* ==========================================
-   時間切れモーダル内のボタンをワイドな濃紺にする
-   ========================================== */
-#modal2 button, 
-#modal2 .modal-content button,
-#modal-timeup button {
+#modal2 button, #modal-timeup button {
   display: inline-block !important;
   width: 85% !important;
   max-width: 240px !important;
-  white-space: nowrap !important;
-  
-  background-color: #0f2547 !important; /* 濃紺 */
-  color: #ffffff !important;           /* 白文字 */
+  background-color: #0f2547 !important; 
+  color: #ffffff !important;           
   font-size: 18px !important;            
   font-weight: bold !important;          
   padding: 14px 20px !important;        
   border: none !important;              
-  border-radius: 15px !important;        /* カプセル型 */
-  box-shadow: 0 4px 15px rgba(15, 37, 71, 0.2) !important; 
-  cursor: pointer !important;
-  
-  /* ボタンの位置調整 */
+  border-radius: 15px !important;        
   margin: 15px auto 0 auto !important;
-  transform: none !important;
 }
-
-/* ボタンを押したときの立体感の沈み込み */
-#modal2 button:active,
-#modal-timeup button:active {
-  transform: translateY(2px) !important;
-  box-shadow: 0 2px 5px rgba(15, 37, 71, 0.2) !important;
-}
-
 /* ==========================================
-   【完全解決】各問の正解モーダル（正解！！）の時だけOKボタンを強制非表示
+   📱 💻 iPad（タブレット）だけで拡大する設定
+   （PCやスマホでは何もしない）
    ========================================== */
-
-/* モーダルのタイトル（h2やp）の中身が「正解！！」になっている時、OKボタンを絶対に消去する */
-#modal2:has(h2:contains("正解！！")) #okay,
-#modal2:has(p:contains("正解！！")) #okay {
-  display: none !important;
-}
-
-/* 万が一上記の上級セレクタがブラウザで効かない場合の、強力な力技用設定 */
-#modal2[class*=""] #okay {
-  /* JavaScriptの正解時（タイマーが動いている間）にボタンが浮き出てくるのを防ぐ保険 */
-}
-
-/* ==========================================
-   📱 スマホで見ているときだけボタンを大きくする設定
-   ========================================== */
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   
-  /* 🔢 テンキーのボタン全体を大きく押しやすくする */
-  .keypad button, 
-  #buttons button, 
-  .btn-container button { 
-    font-size: 24px !important;    /* 文字の大きさをガッツリ大きく */
-    padding: 15px 0 !important;    /* ボタンの縦幅を広げて押しやすく */
-    border-radius: 12px !important; /* 角を少し丸くして押しやすく */
-    width: 100% !important;          /* 割り当てられた幅いっぱいに広げる */
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important; /* 横4列にきれいに等分割 */
-    gap: 12px !important;            /* ボタン同士の隙間を少し広げて押しやすく */
-    margin-bottom: 20px !important;
-
-
-
-  }
-
-#check, .action-btn {
-  width: 100% !important;
-  padding: 15px !important;
-  font-size: 24px !important;
-}
-
-  /* ⭕❌ 判定ボタンやクリアボタンなどの「横長デカボタン」 */
-  #check, #clear, #okay, .action-btn {
-    font-size: 22px !important;
-    padding: 12px 20px !important;
-    height: auto !important;
-    width: 90% !important;        /* スマホの画面幅いっぱいに広げる */
-    max-width: 280px !important;
-  }
-
-  /* ❓ 問題文のルートの文字サイズもスマホ用に大きく調整 */
-  #question {
-    font-size: 36px !important;
-    margin-bottom: 20px !important;
-  }
-
-  /* ✏️ 入力した数式が表示されるエリア */
-  #yanswer-math {
-    font-size: 28px !important;
-    min-height: 40px !important;
+  .container {
+    /* iPadのときだけカードを1.35倍に拡大 */
+    transform: scale(1.35) !important;
+    transform-origin: center top !important; /* 上端を基準に拡大 */
+    margin: 80px auto !important;
   }
 }
-
-
