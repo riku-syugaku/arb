@@ -320,29 +320,27 @@ body {
   margin: 15px auto 0 auto !important;
 }
 
-
 /* ==========================================
-   📱 💻 デバイス別サイズ調整（確実版）
+   📱 縦幅が狭いスマホ・タブレット用の縮小設定
    ========================================== */
 
-/* 1. スマホ(縦幅が狭い場合) ：90%に縮小 */
-@media screen and (max-height: 600px) {
+/* 画面の高さが 750px 未満なら、全体のサイズを少し小さくして収める */
+@media screen and (max-height: 700px) {
   .container {
+    /* 0.9 = 90%のサイズに縮小 */
     transform: scale(0.8) !important;
     transform-origin: center top !important;
     margin: 10px auto !important;
+    padding: 15px 20px !important; /* 縦幅を稼ぐためにパディングも少し減らす */
   }
 }
 
-/* 2. iPad・タブレット（スマホより大きい画面） ：1.35倍に拡大 */
-/* ※768px以上の「タブレットサイズ」をターゲットにします */
-@media screen and (min-width: 768px) {
+/* 画面の高さが 600px 未満の極狭画面なら、さらに小さく */
+@media screen and (max-height: 600px) {
   .container {
-    transform: scale(1.35) !important;
-    transform-origin: center top !important;
-    margin: 80px auto !important;
+    transform: scale(0.8) !important;
+    margin: 5px auto !important;
   }
 }
-
 
 
