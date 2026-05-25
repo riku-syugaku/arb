@@ -26,8 +26,13 @@ body {
   padding: 30px 20px 25px 20px;
   box-shadow: 0 10px 30px rgba(15, 37, 71, 0.05); /* 濃紺ベースの柔らかい影 */
   text-align: center;
-  width: 100%;
-  max-width: 450px;
+  width: 90% !important;           /* 画面の横幅に合わせて柔軟に広げる */
+  max-width: 540px !important;     /* PCやiPadで広がりすぎない絶妙な限界値に変更（元が400px程度なのを拡大） */
+  margin: 40px auto !important;    /* 上下に少し余裕を持たせて中央寄せ */
+  padding: 30px 20px !important;   /* 内側の余白を広げてゆったりさせる */
+
+
+
 }
 
 .level-container h1 {
@@ -431,7 +436,21 @@ body {
     font-size: 24px !important;    /* 文字の大きさをガッツリ大きく */
     padding: 15px 0 !important;    /* ボタンの縦幅を広げて押しやすく */
     border-radius: 12px !important; /* 角を少し丸くして押しやすく */
+    width: 100% !important;          /* 割り当てられた幅いっぱいに広げる */
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 横4列にきれいに等分割 */
+    gap: 12px !important;            /* ボタン同士の隙間を少し広げて押しやすく */
+    margin-bottom: 20px !important;
+
+
+
   }
+
+#check, .action-btn {
+  width: 100% !important;
+  padding: 15px !important;
+  font-size: 24px !important;
+}
 
   /* ⭕❌ 判定ボタンやクリアボタンなどの「横長デカボタン」 */
   #check, #clear, #okay, .action-btn {
