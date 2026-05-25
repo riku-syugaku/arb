@@ -1,0 +1,424 @@
+/* ==========================================
+   1. 全体のベースデザイン（白×濃紺のモダンシンプル）
+   ========================================== */
+body {
+  background-color: #f5f7fa; /* 清潔感のあるプレーンな薄いグレー */
+  color: #0f2547;            /* 全体の文字色を濃いネイビーに統一 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/* 外枠の赤い線と影を排除 */
+.container {
+  background: #ffffff;
+  border: 1px solid #cbd5e1; /* 落ち着いたグレーの細線 */
+  border-radius: 20px;       /* ほどよい丸み */
+  padding: 30px 20px 25px 20px;
+  box-shadow: 0 10px 30px rgba(15, 37, 71, 0.05); /* 濃紺ベースの柔らかい影 */
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.level-container h1 {
+  font-size: 1.6em;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  color: #0f2547;
+}
+
+/* タイトルの強調テキストも濃い青に統一 */
+.level-container h1 span {
+  color: #0f2547 !important;
+  font-weight: 900;
+  text-shadow: none !important;
+}
+
+/* 問題表示エリア */
+#question-area {
+  font-size: 2.8em;
+  font-weight: bold;
+  margin: 15px 0 20px 0;
+  color: #0f2547;
+  background: #f8fafc; /* スッキリした問題エリアの背景 */
+  padding: 20px 15px;
+  border-radius: 14px;
+  border: 1px solid #cbd5e1;
+  min-height: 1.2em;
+  box-shadow: none !important;
+}
+
+/* ==========================================
+   ①・② 解答欄（#yanswer）の修正
+   （赤い枠を完全に排除し、サイズを1.5倍に拡大）
+   ========================================== */
+.answer-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+#yanswer {
+  width: 100%;
+  max-width: 380px;          /* 視覚的な横幅を少し拡張 */
+  background-color: #ffffff !important;
+  border: 2px solid #0f2547 !important; /* 完全に濃紺のフチ（赤を廃止） */
+  border-radius: 14px !important;
+  color: #0f2547 !important;
+  
+  /* 📥 従来の1.5倍サイズに拡大 */
+  font-size: 3.6em !important;   /* 2.4em から 3.6em に大きく */
+  padding: 12px 10px !important; /* 上下の余白を広げて高さを確保 */
+  
+  outline: none !important;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 3px 6px rgba(15, 37, 71, 0.04) !important;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* 入力中（フォーカス時）のスタイルも濃紺で統一 */
+#yanswer:focus {
+  border-color: #0f2547 !important;
+  box-shadow: 0 0 0 3px rgba(15, 37, 71, 0.1) !important; /* じんわり光る影も薄いネイビー */
+}
+
+
+/* ==========================================
+   2. ゲーム内の数字キーパッド（ボタンエリア）
+   ========================================== */
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* キーパッドボタン共通（ユーザー様の立体感の指定を継承） */
+.choice-grid button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #091421;
+  color: #0f2547;
+  border-radius: 12px;
+  aspect-ratio: 1 / 1;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #091421; /* 綺麗な立体感の影 */
+  transition: transform 0.05s, box-shadow 0.05s;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+
+.choice-grid button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #cbd5e1;
+}
+
+/* 記号（ルート）ボタン */
+#root { 
+  background-color: #f1f5f9; 
+  border-color: #091421;
+}
+
+/* 📥 ④ 判定（「できた！」）ボタン：数字キーとの間に余白を追加 */
+#check {
+  grid-column: span 2;
+  aspect-ratio: auto !important;
+  height: calc(100% - 15px);        /* 余白の分、高さを微調整 */
+  margin-top: 15px;                 /* 数字ボタン群との間に上品なスキマを確保 */
+  background-color: #0f2547 !important; 
+  border: 1px solid #0f2547 !important;
+  box-shadow: 0 4px 0 #050e1c !important; 
+  color: #ffffff !important;               
+}
+#check:active { 
+  transform: translateY(3px) !important;
+  box-shadow: 0 1px 0 #050e1c !important; 
+}
+
+/* クリア（C）ボタン（赤みを排除） */
+#clear {
+  background-color: #f1f5f9 !important;
+  border: 2px solid #091421 !important;
+  box-shadow: 0 6px 0 #091421; 
+  color: #0f2547 !important;
+}
+#clear:active { 
+  transform: translateY(3px) !important;
+  box-shadow: 0 1px 0 #cbd5e1 !important; 
+}
+
+
+/* ==========================================
+   3. レベル選択画面（index.html）用のスタイル
+   ========================================== */
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 25px;
+  padding: 0 10px;
+}
+
+@media (max-width: 380px) {
+  .level-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* レベル選択ボタン */
+.lvl-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff !important;
+  color: #0f2547 !important;
+  text-decoration: none;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-radius: 14px;
+  border: 2px solid #091421;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  box-shadow: 0 6px 0 #09121d !important;
+  transition: transform 0.05s, box-shadow 0.05s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lvl-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #cbd5e1 !important;
+}
+
+#No1, #No2, #No3, #No4, #No5, #No6, #No7, #No8 { 
+  background-color: #ffffff !important; 
+  box-shadow: 0 4px 0 #cbd5e1 !important; 
+}
+
+
+/* ==========================================
+   4. モーダル（ポップアップ）設定
+   ========================================== */
+.hidden { display: none !important; }
+
+#modal, #modal3, #modal4, #modal2 {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(15, 37, 71, 0.2); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* 📥 ③ 通常モーダル：枠線（border）を消去 */
+.modal-content {
+  background: #ffffff;
+  border: none !important; /* 枠線をなしに */
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(15, 37, 71, 0.15) !important;
+  max-width: 300px;
+  width: 80%;
+}
+
+.modal-content p { 
+  font-size: 1.4em; 
+  font-weight: bold; 
+  margin-bottom: 20px; 
+  color: #0f2547;
+}
+
+.modal-content button { 
+  width: 100%; 
+  aspect-ratio: auto; 
+  padding: 12px; 
+  border: 1px solid #0f2547;
+  border-radius: 10px;
+  background-color: #0f2547;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #050e1c;
+}
+.modal-content button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #050e1c;
+}
+
+/* 📥 ③ 不正解モーダル：枠線（border）を消去 */
+.modal-content-wrong {
+  background-color: #ffffff; 
+  border: none !important; /* 枠線をなしに */
+  color: #0f2547;
+  padding: 30px 20px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(15, 37, 71, 0.15);
+  max-width: 350px;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: slideDown 0.25s ease-out forwards;
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-30vh); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content-wrong h2 { 
+  font-size: 1.8em; 
+  font-weight: bold; 
+  margin: 0; 
+  color: #0f2547; 
+}
+
+.modal-img {
+  width: 200px;  /* 👈 横幅（好みの大きさに数値を変更してください） */
+  height: auto;   /* 縦横比を崩さないための魔法の決まり文句（このままでOK） */
+  display: block;
+  margin: 0 auto 15px auto; /* 画像を真ん中に寄せつつ、下の文字との隙間をあける設定 */
+}
+
+
+
+.wrong-formula { 
+  font-size: 2.4em; 
+  font-weight: bold; 
+  color: #0f2547; 
+  margin: 5px 0;
+}
+
+/* 不正解モーダルの「わかった」ボタン */
+#okay {
+  background-color: #f1f5f9; 
+  color: #0f2547; 
+  border: 1px solid #cbd5e1; 
+  border-radius: 10px;
+  padding: 10px 30px; 
+  font-size: 1.1em; 
+  font-weight: bold; 
+  cursor: pointer; 
+  width: 130px;
+  aspect-ratio: auto !important; 
+  box-shadow: 0 3px 0 #cbd5e1 !important; 
+  transform: none;
+  transition: transform 0.05s, box-shadow 0.05s;
+}
+#okay:active { 
+  transform: translateY(2px) !important; 
+  box-shadow: 0 1px 0 #cbd5e1 !important; 
+}
+/* ==========================================
+   【完全解決】実際に画面に見えている解答欄（#yanswer-math）の修正
+   ========================================== */
+
+/* 1. 赤い枠線と影を完全に消去し、1.5倍に大きくし、縦幅をあらかじめ固定する */
+#yanswer-math,
+.answer-container #yanswer-math {
+  display: inline-block;
+  width: 100%;
+  max-width: 380px;            /* 横幅を少し拡張 */
+  background-color: #ffffff !important;
+  border: 2px solid #0f2547 !important; /* 濃紺フチ */
+  border-radius: 14px !important;
+  color: #0f2547 !important;
+
+  /* 📥 サイズを拡大しつつ、縦幅を完全に固定する設定 */
+  font-size: 2.6em !important;     /* 文字の大きさ */
+  height: 90px !important;         /* 💡箱の縦幅を「90px」に最初から固定！ */
+  line-height: 90px !important;    /* 💡中の文字やルートが縦のちょうど中央に来るように配置 */
+  padding: 0 10px !important;      /* paddingでの縦伸びを防ぐため、上下のpaddingを0にリセット */
+  
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  box-shadow: inset 0 3px 6px rgba(15, 37, 71, 0.04) !important;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  overflow: hidden;                /* はみ出し防止 */
+}
+
+/* 2. 入力中（フォーカス時）のスタイルも濃紺で統一 */
+#yanswer-math:focus,
+.answer-container #yanswer-math:focus {
+  border-color: #0f2547 !important;
+  box-shadow: 0 0 0 3px rgba(15, 37, 71, 0.1) !important;
+}
+
+/* 3. もし親要素（外枠の箱）に赤線がついている場合の保険 */
+.answer-container {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+/* ==========================================
+   時間切れモーダル内のボタンをワイドな濃紺にする
+   ========================================== */
+#modal2 button, 
+#modal2 .modal-content button,
+#modal-timeup button {
+  display: inline-block !important;
+  width: 85% !important;
+  max-width: 240px !important;
+  white-space: nowrap !important;
+  
+  background-color: #0f2547 !important; /* 濃紺 */
+  color: #ffffff !important;           /* 白文字 */
+  font-size: 18px !important;            
+  font-weight: bold !important;          
+  padding: 14px 20px !important;        
+  border: none !important;              
+  border-radius: 15px !important;        /* カプセル型 */
+  box-shadow: 0 4px 15px rgba(15, 37, 71, 0.2) !important; 
+  cursor: pointer !important;
+  
+  /* ボタンの位置調整 */
+  margin: 15px auto 0 auto !important;
+  transform: none !important;
+}
+
+/* ボタンを押したときの立体感の沈み込み */
+#modal2 button:active,
+#modal-timeup button:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 2px 5px rgba(15, 37, 71, 0.2) !important;
+}
+
+/* ==========================================
+   【完全解決】各問の正解モーダル（正解！！）の時だけOKボタンを強制非表示
+   ========================================== */
+
+/* モーダルのタイトル（h2やp）の中身が「正解！！」になっている時、OKボタンを絶対に消去する */
+#modal2:has(h2:contains("正解！！")) #okay,
+#modal2:has(p:contains("正解！！")) #okay {
+  display: none !important;
+}
+
+/* 万が一上記の上級セレクタがブラウザで効かない場合の、強力な力技用設定 */
+#modal2[class*=""] #okay {
+  /* JavaScriptの正解時（タイマーが動いている間）にボタンが浮き出てくるのを防ぐ保険 */
+}
+
+
+
+
