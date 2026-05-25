@@ -332,3 +332,17 @@ body {
     margin: 80px auto !important;
   }
 }
+
+/* 2. スマホ (縦幅が狭い場合) ：90%に縮小 */
+@media screen and (max-height: 600px) {
+  .container {
+    transform: scale(0.9) !important; /* 全体を90%に縮小 */
+    transform-origin: center top !important;
+    margin: 10px auto !important;     /* 上下の余白を詰める */
+  }
+}
+
+
+
+
+
