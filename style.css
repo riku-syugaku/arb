@@ -319,28 +319,24 @@ body {
   border-radius: 15px !important;        
   margin: 15px auto 0 auto !important;
 }
-
 /* ==========================================
-   📱 縦幅が狭いスマホ・タブレット用の縮小設定
+   📱 縦幅に合わせて全体をスッキリ縮小する設定
    ========================================== */
 
-/* 画面の高さが 750px 未満なら、全体のサイズを少し小さくして収める */
-@media screen and (max-height: 700px) {
+/* 画面の高さが 800px 以下（スマホ・iPad横持ち等）なら 85% に縮小 */
+@media screen and (max-height: 800px) {
   .container {
-    /* 0.9 = 90%のサイズに縮小 */
-    transform: scale(0.8) !important;
+    transform: scale(0.85) !important;
     transform-origin: center top !important;
     margin: 10px auto !important;
-    padding: 15px 20px !important; /* 縦幅を稼ぐためにパディングも少し減らす */
   }
 }
 
-/* 画面の高さが 600px 未満の極狭画面なら、さらに小さく */
+/* 画面の高さが 600px 以下（かなり縦が狭い端末）なら 75% に縮小 */
 @media screen and (max-height: 600px) {
   .container {
-    transform: scale(0.8) !important;
+    transform: scale(0.75) !important;
     margin: 5px auto !important;
   }
 }
-
 
