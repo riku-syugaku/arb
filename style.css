@@ -328,7 +328,7 @@ body {
 /* 1. スマホ(縦幅が狭い場合) ：90%に縮小 */
 @media screen and (max-height: 600px) {
   .container {
-    transform: scale(0.9) !important;
+    transform: scale(0.8) !important;
     transform-origin: center top !important;
     margin: 10px auto !important;
   }
