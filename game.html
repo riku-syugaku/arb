@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平方根テスト - プレイ中</title>
+<link rel="stylesheet" href="style.css?v=1">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="level-container">
+      <div style="display: flex; justify-content: space-between; font-size:33px; font-weight: bold; margin-bottom: 10px;">
+        <div id="timescore">あと30秒</div>
+        <div id="Qnum">あと--問</div>
+      </div>
+    </div> 
+    
+    <div id="question-area">
+      <div id="question">$$\sqrt{18}$$</div>
+    </div>
+
+    <div class="answer-container">
+      <div style="position: relative; width: 100%; max-width: 400px; margin: 0 auto;">
+        <div id="yanswer-math" class="yanswer-display" style="width: 100%; min-height: 50px; background-color: #2e2e3e; border: 2px solid #ff2a5f; border-radius: 12px; color: #ffffff; font-size: 26px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; box-sizing: border-box;">
+          \(  \)
+        </div>
+        <input type="hidden" id="yanswer" value="">
+      </div>
+    </div>
+
+    <div class="choice-grid">
+      <button id="one">1</button>
+      <button id="two">2</button>
+      <button id="three">3</button>
+      
+      <button id="four">4</button>
+      <button id="five">5</button>
+      <button id="six">6</button>
+      
+      <button id="seven">7</button>
+      <button id="eight">8</button>
+      <button id="nine">9</button>
+      
+      <button id="zero">0</button>
+      <button id="root">√</button>
+      <button id="clear">C</button>
+      
+      <button id="check" style="width: 200%; max-width: 800px; padding: 15px; font-size: 24px; font-weight: bold; background-color: #ff2a5f; color: white; border: none; border-radius: 12px; cursor: pointer;">
+        判定
+      </button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <a href="index.html" style="color: #aaa; text-decoration: none; font-size: 0.9em;">← レベル選択に戻る</a>
+    </div>
+
+  </div>
+
+  <div id="modal" class="hidden"><div class="modal-content"><p id="win"></p><button id="close">閉じる</button></div></div>
+  <div id="modal3" class="hidden"><div class="modal-content"><p id="isCorrected">正解！</p></div></div>
+  <div id="modal4" class="hidden">
+    <div class="modal-content">
+      <p id="lose">時間切れです！</p>
+      <button id="back-to-select" style="background-color: #e94560; color: white; padding: 10px; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer;">レベル選択に戻る</button>
+    </div>
+  </div>
+
+  <div id="modal2" class="hidden">
+    <div class="modal-content-wrong">
+      <h2>残念！！やり直し！</h2>
+      <img src="img/ng.png" alt="カエル" class="modal-img">
+      <div id="answer" class="wrong-formula">48 = 4√3</div>
+      <button id="okay">OK</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
