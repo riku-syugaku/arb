@@ -30,6 +30,8 @@ min-height: 100vh;
   max-width: 420px;          /* ★PCで見た時に美しく収まる絶妙なサイズ */
   margin: 20px auto;
   box-sizing: border-box;
+   min-height: 100vh;
+
 }
 
 .level-container h1 {
