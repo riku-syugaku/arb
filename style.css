@@ -327,10 +327,10 @@ min-height: 100vh;
    ========================================== */
 
 
-/* 800px以下なら 85% → 75% に変更 */
+/* 800px以下なら 85% に変更 */
 @media screen and (max-height: 800px) {
   .container {
-    transform: scale(0.75) !important; /* 85%から75%へ */
+    transform: scale(0.85) !important; 
     transform-origin: center top !important;
     margin: 10px auto !important;
   }
@@ -340,7 +340,7 @@ min-height: 100vh;
 /* 画面の高さが 600px 以下なら 75% に縮小 */
 @media screen and (max-height: 600px) {
   .container {
-    transform: scale(0.75) !important;
+    transform: scale(0.85) !important;
     margin: 5px auto !important;
   }
 } /* ← ここでこのメディアクエリを閉じるのが正解 */
