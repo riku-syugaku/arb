@@ -344,17 +344,33 @@ min-height: 100vh;
 }
 
 /* ==========================================
-   📱 スマホ・タブレット用：ボタンのつまりを解消
+   📱 縦幅に合わせて全体をスッキリ縮小する設定
    ========================================== */
 
-/* 画面幅が狭いときは、縮小を解除して「改行」で対応する */
-@media screen and (max-width: 600px) {
+/* 800px以下なら縮小 */
+@media screen and (max-height: 800px) {
   .container {
-    transform: none !important; /* 縮小を強制解除 */
-    width: 95% !important;      /* 横幅を広げる */
+    transform: scale(0.85) !important; 
+    transform-origin: center top !important;
     margin: 10px auto !important;
-    min-height: auto;
   }
+}
+
+/* 画面の高さが 600px 以下なら 75% に縮小 */
+@media screen and (max-height: 600px) {
+  .container {
+    transform: scale(0.85) !important;
+    margin: 5px auto !important;
+  }
+}
+
+/* PC用：スマホ用縮小を解除する */
+@media screen and (min-width: 768px) {
+  .container {
+    transform: none !important;
+    max-width: 500px;
+  }
+}
 
   .choice-grid, .level-grid {
     display: grid;
