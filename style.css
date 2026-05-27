@@ -372,6 +372,17 @@ min-height: 100vh;
   }
 }
 
+@media screen and (max-width: 480px) {
+  .choice-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+  .choice-grid button {
+    font-size: 1.2em !important; /* 文字を少し小さくして詰まりを回避 */
+  }
+}
+
+
   .choice-grid, .level-grid {
     display: grid;
     gap: 8px; /* 隙間を少し詰める */
