@@ -343,29 +343,29 @@ min-height: 100vh;
   }
 }
 
-/* 【重要】ボタンが潰れないように、縮小の影響を打ち消す設定 */
-@media screen and (max-height: 800px) {
-  .choice-grid button, .lvl-btn {
-    transform: scale(1.1); /* 縮小された分を少し拡大して元に戻す */
-    margin-bottom: 5px;   /* 拡大による重なりを防ぐ余白 */
-  }
-}
+/* ==========================================
+   📱 スマホ・タブレット用：ボタンのつまりを解消
+   ========================================== */
 
-/* PC用：スマホ用縮小を解除する */
-@media screen and (min-width: 768px) {
+/* 画面幅が狭いときは、縮小を解除して「改行」で対応する */
+@media screen and (max-width: 600px) {
   .container {
-    transform: none !important;
-    max-width: 500px;
+    transform: none !important; /* 縮小を強制解除 */
+    width: 95% !important;      /* 横幅を広げる */
+    margin: 10px auto !important;
+    min-height: auto;
   }
-  /* PCの時は拡大を解除 */
-  .choice-grid button, .lvl-btn {
-    transform: none !important;
-  }
-}
 
-/* ボタンを押した時に少し光る・弾むアニメーション */
-.choice-grid button {
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+  .choice-grid, .level-grid {
+    display: grid;
+    gap: 8px; /* 隙間を少し詰める */
+  }
+
+  .choice-grid button, .lvl-btn {
+    transform: none !important; /* 拡大・縮小を無効化 */
+    font-size: 1.4em !important; /* 少しだけ小さくして収まりを良くする */
+    aspect-ratio: 1 / 1;
+  }
 }
 
 /* 判定ボタンをより目立たせる（鼓動のようなアニメーション） */
