@@ -326,30 +326,40 @@ min-height: 100vh;
    📱 縦幅に合わせて全体をスッキリ縮小する設定
    ========================================== */
 
-
-/* 800px以下なら 85% に変更 */
+/* 800px以下なら縮小（ただしボタンなどの内部要素は比率を維持） */
 @media screen and (max-height: 800px) {
   .container {
-    transform: scale(0.85) !important; 
-    transform-origin: center top !important;
-    margin: 10px auto !important;
+    transform: scale(0.9); /* 少し縮小率を緩やかに（0.85→0.9） */
+    transform-origin: center top;
+    margin: 10px auto;
   }
 }
 
-
-/* 画面の高さが 600px 以下なら 75% に縮小 */
+/* 画面の高さが 600px 以下ならさらに縮小 */
 @media screen and (max-height: 600px) {
   .container {
-    transform: scale(0.85) !important;
-    margin: 5px auto !important;
+    transform: scale(0.8);
+    margin: 5px auto;
   }
-} /* ← ここでこのメディアクエリを閉じるのが正解 */
+}
+
+/* 【重要】ボタンが潰れないように、縮小の影響を打ち消す設定 */
+@media screen and (max-height: 800px) {
+  .choice-grid button, .lvl-btn {
+    transform: scale(1.1); /* 縮小された分を少し拡大して元に戻す */
+    margin-bottom: 5px;   /* 拡大による重なりを防ぐ余白 */
+  }
+}
 
 /* PC用：スマホ用縮小を解除する */
 @media screen and (min-width: 768px) {
   .container {
     transform: none !important;
-    max-width: 500px; /* PCでは少し広げる */
+    max-width: 500px;
+  }
+  /* PCの時は拡大を解除 */
+  .choice-grid button, .lvl-btn {
+    transform: none !important;
   }
 }
 
